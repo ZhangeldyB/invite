@@ -1,0 +1,247 @@
+/* ── Envelope scene overlay ───────────────────────────────── */
+.envelope-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ivory);
+  cursor: pointer;
+  transition: opacity 1s ease 0.3s, visibility 1s ease 0.3s;
+  overflow: hidden;
+}
+
+.envelope-scene--fading {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Subtle diamond-grid background */
+.envelope-scene__bg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image:
+    repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+  background-size: 24px 24px;
+}
+
+/* Corner ornaments */
+.envelope-scene__corners {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.envelope-scene__corner {
+  position: absolute;
+  color: var(--gold);
+  opacity: 0.55;
+}
+
+.envelope-scene__corner--tl { top: 12px; left: 12px; }
+.envelope-scene__corner--tr { top: 12px; right: 12px; transform: scaleX(-1); }
+.envelope-scene__corner--bl { bottom: 12px; left: 12px; transform: scaleY(-1); }
+.envelope-scene__corner--br { bottom: 12px; right: 12px; transform: scale(-1, -1); }
+
+/* Hint text */
+.envelope-scene__hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  white-space: nowrap;
+  color: var(--gold-dark);
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: hint-fade 2.2s ease-in-out 1.8s infinite;
+}
+
+@keyframes hint-fade {
+  0%, 100% { opacity: 0; transform: translateX(-50%) translateY(0); }
+  50%       { opacity: 0.65; transform: translateX(-50%) translateY(-5px); }
+}
+
+/* ── Perspective wrapper ──────────────────────────────────── */
+.envelope-wrapper {
+  perspective: 1600px;
+  perspective-origin: 50% 30%;
+  /* Large envelope — takes up most of the screen */
+  width: min(820px, 93vw);
+  position: relative;
+}
+
+/* ── Envelope container ───────────────────────────────────── */
+.envelope {
+  position: relative;
+  width: 100%;
+  padding-bottom: 63%; /* ~1.59:1 width:height — classic envelope proportion */
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 24px 60px rgba(139, 105, 20, 0.22)) drop-shadow(0 6px 18px rgba(139, 105, 20, 0.16));
+}
+
+/* ── Envelope body (the back of the envelope) ──────────────── */
+.envelope__body {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  border: 2px solid var(--gold);
+  overflow: visible;
+}
+
+/* Jiyek border lines inside envelope body */
+.envelope__body-border-top {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  color: var(--gold);
+  opacity: 0.35;
+}
+.envelope__body-border-bottom {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  color: var(--gold);
+  opacity: 0.35;
+}
+
+/* Left and right side fold triangles */
+.envelope__side-left {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 50%;
+  background: var(--cream);
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+  border-right: 1px solid var(--gold-light);
+  opacity: 0.55;
+}
+.envelope__side-right {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 50%;
+  background: var(--cream);
+  clip-path: polygon(100% 0%, 0% 50%, 100% 100%);
+  border-left: 1px solid var(--gold-light);
+  opacity: 0.55;
+}
+
+/* Bottom fold triangle */
+.envelope__bottom-fold {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 44%;
+  background: #f7f2e8;
+  clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+  border-top: 1px solid var(--gold-light);
+}
+
+/* ── Top flap ─────────────────────────────────────────────── */
+.envelope__flap-wrapper {
+  position: absolute;
+  top: -2px; left: -2px; right: -2px;
+  height: 58%;
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  transition: transform 1s cubic-bezier(0.45, 0, 0.18, 1);
+  z-index: 10;
+}
+
+.envelope--opening .envelope__flap-wrapper {
+  transform: rotateX(-185deg);
+}
+
+/* The flap triangle itself */
+.envelope__flap {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+  border: 2px solid var(--gold);
+  border-bottom: none;
+}
+
+/* Gradient shading on closed flap to give 3-D depth */
+.envelope__flap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+  background: linear-gradient(170deg, rgba(255,255,255,0) 40%, rgba(201,168,76,0.08) 100%);
+}
+
+/* Inner ornament on flap */
+.envelope__flap-inner {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(1% 0%, 99% 0%, 50% 98%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 6%;
+  gap: 4px;
+  pointer-events: none;
+}
+
+/* ── Wax Seal ──────────────────────────────────────────────── */
+.envelope__seal {
+  position: absolute;
+  bottom: -11%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  filter: drop-shadow(0 5px 14px rgba(92,15,15,0.45));
+}
+
+.envelope--opening .envelope__seal {
+  animation: seal-crack 0.4s ease-in 0.06s both;
+}
+
+@keyframes seal-crack {
+  0%   { transform: translateX(-50%) scale(1) rotate(0deg);    opacity: 1; }
+  35%  { transform: translateX(-50%) scale(1.22) rotate(8deg); opacity: 0.85; }
+  100% { transform: translateX(-50%) scale(0.05) rotate(-15deg); opacity: 0; }
+}
+
+/* ── Letter / paper rising from inside ────────────────────── */
+.envelope__letter {
+  position: absolute;
+  top: 6%; left: 7%; right: 7%;
+  bottom: 12%;
+  background: #fffef8;
+  border: 1px solid var(--gold-light);
+  z-index: 5;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.envelope__letter-preview {
+  text-align: center;
+  padding: 12px;
+  color: var(--text-dark);
+  font-family: var(--font-head);
+  font-size: clamp(0.75rem, 1.8vw, 1.1rem);
+  font-style: italic;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+}
+
+.envelope--opening .envelope__letter {
+  animation: letter-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both;
+}
+
+@keyframes letter-rise {
+  0%   { transform: translateY(50px) scaleY(0.7); opacity: 0; }
+  60%  { opacity: 1; }
+  100% { transform: translateY(-22%); opacity: 1; }
+}

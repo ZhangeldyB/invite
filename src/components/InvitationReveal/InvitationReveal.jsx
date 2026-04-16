@@ -1,0 +1,40 @@
+import './InvitationReveal.css';
+import { ShanyrakSVG } from '../OrnamentSVG/OrnamentSVG';
+
+const kazakhLine = 'Сіздерді үйлену тойына шақырамыз';
+const words = kazakhLine.split(' ');
+
+export default function InvitationReveal() {
+  return (
+    <div className="invitation">
+      <div className="invitation__ornament">
+        <ShanyrakSVG size={64} />
+      </div>
+
+      <p className="invitation__eyebrow">Шақыру&nbsp;&nbsp;·&nbsp;&nbsp;Приглашение</p>
+
+      <div className="invitation__text">
+        {words.map((word, i) => (
+          <span
+            key={i}
+            className="word"
+            style={{ animationDelay: `${0.55 + i * 0.1}s` }}
+          >
+            {word}
+          </span>
+        ))}
+      </div>
+
+      <div className="invitation__names">
+        Жангельды &amp; Самал
+      </div>
+
+      <p className="invitation__sub">Жангельды и Самал приглашают вас на свадьбу</p>
+
+      <div className="invitation__scroll-hint">
+        <div className="invitation__scroll-arrow" />
+        <span className="invitation__scroll-label">Төмен жылжыту · Прокрутить</span>
+      </div>
+    </div>
+  );
+}

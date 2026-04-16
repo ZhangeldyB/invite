@@ -1,0 +1,136 @@
+/* ── Paper rise animation stage ─────────────────────────────
+ * The paper starts below the viewport and rises into view.
+ * It settles as a scrollable full-height letter.
+ */
+.paper-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  /* Allow scrolling inside the paper */
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Initially hidden below screen */
+  transform: translateY(100vh);
+  opacity: 0;
+  transition: none;
+  padding: 0;
+  /* Parchment page background */
+  background: var(--ivory);
+}
+
+.paper-stage--rising {
+  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ── The paper / letter card ─────────────────────────────── */
+.paper {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  min-height: 100vh;
+  background: #fffef8;
+  box-shadow:
+    0 0 0 1px var(--gold-light),
+    0 4px 40px rgba(139,105,20,0.12),
+    0 20px 80px rgba(100,70,10,0.08);
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+/* ── Left and right koshkar muiz borders ──────────────────── */
+.paper__border-left {
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 38px;
+  color: var(--gold);
+  opacity: 0.55;
+  overflow: hidden;
+}
+
+.paper__border-right {
+  position: absolute;
+  top: 0; bottom: 0; right: 0;
+  width: 38px;
+  color: var(--gold);
+  opacity: 0.55;
+  overflow: hidden;
+}
+
+/* ── Top ornament band ────────────────────────────────────── */
+.paper__top-band {
+  padding: 16px 50px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.paper__top-border {
+  width: 100%;
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+.paper__top-diamond {
+  width: 80%;
+  color: var(--gold);
+  opacity: 0.5;
+}
+
+/* ── Inner content area ───────────────────────────────────── */
+.paper__content {
+  flex: 1;
+  padding: 12px 56px 16px;
+}
+
+/* ── Bottom ornament band ─────────────────────────────────── */
+.paper__bottom-band {
+  padding: 0 50px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.paper__bottom-diamond {
+  width: 80%;
+  color: var(--gold);
+  opacity: 0.5;
+}
+
+.paper__bottom-border {
+  width: 100%;
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+/* ── Section dividers inside paper ───────────────────────── */
+.paper__divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 32px 0;
+  color: var(--gold);
+  gap: 12px;
+}
+
+.paper__divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--gold-light);
+}
+
+/* ── Responsive padding shrink on mobile ─────────────────── */
+@media (max-width: 520px) {
+  .paper__content { padding: 8px 44px 8px; }
+  .paper__top-band { padding: 10px 40px 0; }
+  .paper__bottom-band { padding: 0 40px 16px; }
+  .paper__border-left,
+  .paper__border-right { width: 30px; }
+}
