@@ -31,10 +31,7 @@ export default function InvitationReveal() {
 
       <p className="invitation__sub">Жангельды и Самал приглашают вас на свадьбу</p>
 
-      <div className="invitation__scroll-hint">
-        <div className="invitation__scroll-arrow" />
-        <span className="invitation__scroll-label">Төмен жылжыту · Прокрутить</span>
-      </div>
+
     </div>
   );
 }
