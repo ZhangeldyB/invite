@@ -20,8 +20,8 @@ export default function App() {
 
   const handleOpen = useCallback(() => {
     setPhase('opening');
-    // Paper is mounted right away so its fade-in CSS transition fires
-    // simultaneously with the envelope burst animation
+    // Fallback: if animationend never fires (e.g. reduced-motion), advance after 2.5s
+    setTimeout(() => setPhase(p => p === 'opening' ? 'gone' : p), 2500);
   }, []);
 
   const handleComplete = useCallback(() => {

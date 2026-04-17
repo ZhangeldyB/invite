@@ -61,8 +61,8 @@
   position: relative;
 }
 
-/* Zoom-rush animation fires after flaps start opening */
-.envelope--opening .envelope-perspective {
+/* Zoom-rush animation — both classes on the SAME element, no space */
+.envelope-perspective.envelope--opening {
   animation: envelope-rush 0.85s cubic-bezier(0.55, 0, 1, 0.45) 0.38s both;
 }
 
