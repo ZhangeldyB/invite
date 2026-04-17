@@ -38,14 +38,13 @@ export default function App() {
     <>
       {/* Paper renders behind the envelope during burst; fades in as envelope zooms away */}
       <Paper visible={showPaper}>
-        <p className="paper-wedding-type">Үйлену той&nbsp;&nbsp;·&nbsp;&nbsp;Свадьба</p>
         <InvitationReveal />
-        <PaperDivider />
-        <Hosts />
         <PaperDivider />
         <EventDetails />
         <PaperDivider />
         <RSVPForm />
+        <PaperDivider />
+        <Hosts />
 
         <footer style={{
           textAlign: 'center',
@@ -64,7 +63,7 @@ export default function App() {
           </p>
           <p style={{
             fontFamily: 'var(--font-body)',
-            fontSize: '0.65rem',
+            fontSize: '0.7rem',
             letterSpacing: '0.22em',
             textTransform: 'uppercase',
             color: 'var(--gold-dark)',

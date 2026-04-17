@@ -80,8 +80,8 @@
 
 .event-card__label {
   font-family: var(--font-body);
-  font-size: 0.58rem;
-  letter-spacing: 0.18em;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold-dark);
   margin-bottom: 4px;
@@ -113,8 +113,8 @@
   border: 1.5px solid var(--gold);
   color: var(--gold-dark);
   font-family: var(--font-body);
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
   position: relative;

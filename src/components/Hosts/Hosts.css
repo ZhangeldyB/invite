@@ -5,11 +5,11 @@
 
 .hosts__eyebrow {
   font-family: var(--font-body);
-  font-size: 0.65rem;
-  letter-spacing: 0.3em;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold-dark);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .hosts__names {

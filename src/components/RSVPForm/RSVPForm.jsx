@@ -43,7 +43,7 @@ export default function RSVPForm() {
         <div className="rsvp__success">
           <div className="rsvp__success-icon">🌸</div>
           <h3 className="rsvp__success-title">Растауыңыз қабылданды!</h3>
-          <p className="rsvp__success-sub">Подтверждение получено · Сізді күтеміз!</p>
+          <p className="rsvp__success-sub">Сізді күтеміз!</p>
         </div>
       </div>
     );
@@ -53,12 +53,11 @@ export default function RSVPForm() {
     <div className="rsvp">
       <div className="rsvp__header">
         <h2 className="rsvp__title">Қатысуды растау</h2>
-        <p className="rsvp__title-sub">Подтверждение присутствия</p>
       </div>
 
       <form className="rsvp__form" onSubmit={handleSubmit}>
         <div className="rsvp__field">
-          <label className="rsvp__label">Аты-жөні · Ваше имя</label>
+          <label className="rsvp__label">Аты-жөні</label>
           <input
             className="rsvp__input"
             type="text"
@@ -70,24 +69,24 @@ export default function RSVPForm() {
         </div>
 
         <div className="rsvp__field">
-          <label className="rsvp__label">Қатысу · Участие</label>
+          <label className="rsvp__label">Қатысу</label>
           <div className="rsvp__radio-group">
             <label className="rsvp__radio-label">
               <input type="radio" name="attendance" value="solo"
                 checked={attendance === 'solo'} onChange={() => handleAttendance('solo')} />
-              Келемін · Приду
+              Келемін
             </label>
             <label className="rsvp__radio-label">
               <input type="radio" name="attendance" value="with_guest"
                 checked={attendance === 'with_guest'} onChange={() => handleAttendance('with_guest')} />
-              Бірге келемін · Приду с кем-то
+              Бірге келемін
             </label>
           </div>
         </div>
 
         {attendance === 'with_guest' && (
           <div className="rsvp__field">
-            <label className="rsvp__label">Қосымша қонақтар · Кол-во гостей</label>
+            <label className="rsvp__label">Қосымша қонақтар</label>
             <div className="rsvp__count-group">
               {[1, 2, 3, 4, 5].map((n) => (
                 <label key={n} className="rsvp__count-label">
@@ -102,7 +101,7 @@ export default function RSVPForm() {
 
         <div className={`rsvp__guest-fields${showGuestFields ? ' rsvp__guest-fields--visible' : ''}`}>
           <div className="rsvp__field">
-            <label className="rsvp__label">Қонақтар аты · Имена гостей</label>
+            <label className="rsvp__label">Қонақтар аты</label>
             <div className="rsvp__guest-list">
               {Array.from({ length: guestCount }, (_, i) => (
                 <div key={i} className="rsvp__guest-input-wrapper">
@@ -110,7 +109,7 @@ export default function RSVPForm() {
                   <input
                     className="rsvp__input"
                     type="text"
-                    placeholder={`${i + 1}-ші қонақ · Гость ${i + 1}`}
+                    placeholder={`${i + 1}-ші қонақ`}
                     value={guestNames[i]}
                     onChange={(e) => updateGuest(i, e.target.value)}
                   />
@@ -123,7 +122,7 @@ export default function RSVPForm() {
         {status === 'error' && <p className="rsvp__error">{errorMsg}</p>}
 
         <button type="submit" className="rsvp__submit" disabled={status === 'loading'}>
-          <span>{status === 'loading' ? 'Жіберілуде...' : 'Растау · Подтвердить'}</span>
+          <span>{status === 'loading' ? 'Жіберілуде...' : 'Растау'}</span>
         </button>
       </form>
     </div>

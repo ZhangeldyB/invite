@@ -26,7 +26,6 @@ export default function EventDetails() {
     <div className="event-details">
       <div className="event-details__header">
         <h2 className="event-details__title">Той мәліметтері</h2>
-        <p className="event-details__title-sub">Детали торжества</p>
       </div>
 
       <div className="event-details__frame">
@@ -36,10 +35,10 @@ export default function EventDetails() {
         <CornerSparkleSVG size={38} className="event-details__corner event-details__corner--br" />
 
         <div className="event-details__cards">
-          <EventCard icon={<CalendarIconSVG   size={40} />} label="Күні · Дата"             value="29 тамыз 2025"  valueSub="29 августа 2025" />
-          <EventCard icon={<ClockIconSVG      size={40} />} label="Уақыты · Время"          value="16:00" />
-          <EventCard icon={<LocationPinSVG    size={40} />} label="Қала · Город"            value="Қостанай"       valueSub="Костанай" />
-          <EventCard icon={<BuildingIconSVG   size={40} />} label="Мейрамхана · Ресторан"   value="Астам" />
+          <EventCard icon={<CalendarIconSVG   size={40} />} label="Күні"         value="29 тамыз 2025" />
+          <EventCard icon={<ClockIconSVG      size={40} />} label="Уақыты"       value="16:00" />
+          <EventCard icon={<LocationPinSVG    size={40} />} label="Қала"         value="Қостанай" />
+          <EventCard icon={<BuildingIconSVG   size={40} />} label="Мейрамхана"   value="Астам" />
         </div>
 
         <a
@@ -49,7 +48,7 @@ export default function EventDetails() {
           className="event-details__map-btn"
         >
           <MapIconSVG size={18} />
-          <span>2GIS картасында · Открыть в 2GIS</span>
+          <span>2GIS картасында</span>
         </a>
       </div>
     </div>

@@ -5,7 +5,7 @@ import { fetchSubmissions } from '../../utils/api';
 
 function formatDate(iso) {
   if (!iso) return '—';
-  return new Date(iso).toLocaleString('ru-RU', {
+  return new Date(iso).toLocaleString('kk-KZ', {
     day: '2-digit', month: '2-digit', year: 'numeric',
     hour: '2-digit', minute: '2-digit',
   });
@@ -51,7 +51,7 @@ export default function AdminModal() {
       <div className="admin-modal" role="dialog" aria-modal="true" aria-label="Admin panel">
         <div className="admin-modal__header">
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 0 }}>
-            <h2 className="admin-modal__title">Растаулар · Подтверждения</h2>
+            <h2 className="admin-modal__title">Растаулар</h2>
             {status === 'done' && (
               <span className="admin-modal__count">({submissions.length})</span>
             )}
@@ -61,19 +61,19 @@ export default function AdminModal() {
 
         <div className="admin-modal__body">
           {status === 'loading' && <p className="admin-modal__loading">Жүктелуде...</p>}
-          {status === 'error' && <p className="admin-modal__error">Қате орын алды. Пожалуйста, попробуйте ещё раз.</p>}
+          {status === 'error' && <p className="admin-modal__error">Қате орын алды. Қайталап көріңіз.</p>}
           {status === 'done' && submissions.length === 0 && (
-            <p className="admin-modal__empty">Әзірше растаулар жоқ · Пока нет подтверждений</p>
+            <p className="admin-modal__empty">Әзірше растаулар жоқ</p>
           )}
           {status === 'done' && submissions.length > 0 && (
             <table className="admin-table">
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Аты · Имя</th>
-                  <th>Қатысу · Участие</th>
-                  <th>Қонақтар · Гости</th>
-                  <th>Уақыты · Дата</th>
+                  <th>Аты</th>
+                  <th>Қатысу</th>
+                  <th>Қонақтар</th>
+                  <th>Уақыты</th>
                 </tr>
               </thead>
               <tbody>
@@ -83,7 +83,7 @@ export default function AdminModal() {
                     <td>{s.primaryName}</td>
                     <td>
                       <span className="admin-table__badge">
-                        {s.attendance === 'solo' ? 'Жалғыз · Один' : 'Бірге · С гостями'}
+                        {s.attendance === 'solo' ? 'Жалғыз' : 'Бірге'}
                       </span>
                     </td>
                     <td>

@@ -1,8 +1,15 @@
 import './InvitationReveal.css';
 import { RingsSVG } from '../OrnamentSVG/OrnamentSVG';
+import { PaperDivider } from '../Paper/Paper';
 
-const kazakhLine = 'Сіздерді үйлену тойға шақырамыз';
-const words = kazakhLine.split(' ');
+const GREETING_LINES = [
+  'Құрметті',
+  'ағайын-туыс, бауырлыр,',
+  'құда-жекжат, нағашы-жиен,',
+  'бөлелер, дос-жаран,',
+  'сыныптастар, әріптестер,',
+  'көршілер!',
+];
 
 export default function InvitationReveal() {
   return (
@@ -11,27 +18,22 @@ export default function InvitationReveal() {
         <RingsSVG size={130} />
       </div>
 
-      <p className="invitation__eyebrow">Шақыру&nbsp;&nbsp;·&nbsp;&nbsp;Приглашение</p>
-
-      <div className="invitation__text">
-        {words.map((word, i) => (
-          <span
-            key={i}
-            className="word"
-            style={{ animationDelay: `${0.55 + i * 0.1}s` }}
-          >
-            {word}
-          </span>
+      <div className="invitation__greeting">
+        {GREETING_LINES.map((line, i) => (
+          <span key={i} className="invitation__greeting-line">{line}</span>
         ))}
       </div>
 
-      <div className="invitation__names">
-        Жангельды &amp; Самал
+      <PaperDivider />
+
+      <div className="invitation__text">
+        <span className="invitation__line">Сіздерді ұлымыз</span>
+        <span className="invitation__name">Жангельды</span>
+        <span className="invitation__line">мен келініміз</span>
+        <span className="invitation__name">Самалдың</span>
+        <span className="invitation__line">үйлену тойының</span>
+        <span className="invitation__line">қадірлі қонағы болуға шақырамыз!</span>
       </div>
-
-      <p className="invitation__sub">Приглашаем вас на свадьбу</p>
-
-
     </div>
   );
 }

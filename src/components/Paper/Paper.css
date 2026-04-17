@@ -47,9 +47,13 @@
 .paper__border-right { right: 0; transform: scaleX(-1); }
 
 /* ── Top / bottom ornament bands ──────────────────────────── */
+.paper__top-band,
+.paper__bottom-band {
+  color: var(--gold);
+  opacity: 0.75;
+}
 .paper__top-band    { padding: 18px 40px 0; }
 .paper__bottom-band { padding: 0 40px 22px; }
-.paper__band        { color: var(--gold); opacity: 0.75; }
 
 /* ── Inner content ────────────────────────────────────────── */
 .paper__content {
