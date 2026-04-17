@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import './App.css';
 
 import EnvelopeScene from './components/EnvelopeScene/EnvelopeScene';
@@ -9,36 +9,38 @@ import RSVPForm from './components/RSVPForm/RSVPForm';
 import AdminModal from './components/AdminModal/AdminModal';
 
 export default function App() {
-  // phase: 'envelope' → 'opening' → 'open'
+  // phase: 'envelope' → 'opening' → 'open' → 'gone'
   const [phase, setPhase] = useState('envelope');
-  const [showPaper, setShowPaper] = useState(false);
 
+  // Lock scroll while envelope is showing
   useEffect(() => {
-    document.body.classList.toggle('no-scroll', phase === 'envelope');
+    const locked = phase === 'envelope' || phase === 'opening';
+    document.body.classList.toggle('no-scroll', locked);
   }, [phase]);
 
-  const handleOpen     = () => setPhase('opening');
-  const handleComplete = () => {
-    setPhase('open');
-    // Let envelope fade start, then show paper
-    setTimeout(() => setShowPaper(true), 150);
-  };
+  const handleOpen = useCallback(() => {
+    setPhase('opening');
+    // Paper is mounted right away so its fade-in CSS transition fires
+    // simultaneously with the envelope burst animation
+  }, []);
+
+  const handleComplete = useCallback(() => {
+    // envelope-rush animation just ended; hide envelope, unlock scroll
+    setPhase('gone');
+    document.body.classList.remove('no-scroll');
+  }, []);
+
+  const showEnvelope = phase !== 'gone';
+  const showPaper    = phase === 'opening' || phase === 'open' || phase === 'gone';
 
   return (
     <>
-      {/* Envelope always rendered so its fade-out transition plays */}
-      <EnvelopeScene phase={phase} onOpen={handleOpen} onComplete={handleComplete} />
-
-      {/* Paper slides up once envelope opens */}
+      {/* Paper renders behind the envelope during burst; fades in as envelope zooms away */}
       <Paper visible={showPaper}>
         <InvitationReveal />
-
         <PaperDivider />
-
         <EventDetails />
-
         <PaperDivider />
-
         <RSVPForm />
 
         <footer style={{
@@ -68,6 +70,15 @@ export default function App() {
           </p>
         </footer>
       </Paper>
+
+      {/* Envelope is on top (z:100); disappears via zoom-rush animation */}
+      {showEnvelope && (
+        <EnvelopeScene
+          phase={phase}
+          onOpen={handleOpen}
+          onComplete={handleComplete}
+        />
+      )}
 
       <AdminModal />
     </>

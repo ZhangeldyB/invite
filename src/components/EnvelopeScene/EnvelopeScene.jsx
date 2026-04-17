@@ -1,83 +1,84 @@
 import { useRef } from 'react';
 import './EnvelopeScene.css';
-import { WaxSealSVG, JiyekBorderSVG, KoshkarCornerSVG, KoshkarBorderSVG, DiamondChainSVG } from '../OrnamentSVG/OrnamentSVG';
+import {
+  WaxSealSVG,
+  KoshkarCornerSVG,
+  KoshkarBorderSVG,
+  JiyekBorderSVG,
+  DiamondChainSVG,
+} from '../OrnamentSVG/OrnamentSVG';
 
 export default function EnvelopeScene({ phase, onOpen, onComplete }) {
-  const letterRef = useRef(null);
+  const perspRef = useRef(null);
 
   const handleClick = () => {
     if (phase === 'envelope') onOpen();
   };
 
+  // onComplete fires when the zoom-rush animation ends
   const handleAnimEnd = (e) => {
-    if (e.animationName === 'letter-rise') onComplete();
+    if (e.animationName === 'envelope-rush') onComplete();
   };
 
-  const isOpening = phase === 'opening';
-  const isFading  = phase === 'open';
+  const isOpening = phase === 'opening' || phase === 'open';
 
   return (
     <div
-      className={`envelope-scene${isFading ? ' envelope-scene--fading' : ''}`}
+      className="envelope-scene"
       onClick={handleClick}
+      style={{ visibility: phase === 'gone' ? 'hidden' : 'visible' }}
     >
       <div className="envelope-scene__bg" />
 
-      {/* Corner koshkar muiz ornaments */}
+      {/* Full-page corner koshkar ornaments */}
       <div className="envelope-scene__corners">
-        <KoshkarCornerSVG size={90} className="envelope-scene__corner envelope-scene__corner--tl" />
-        <KoshkarCornerSVG size={90} className="envelope-scene__corner envelope-scene__corner--tr" />
-        <KoshkarCornerSVG size={90} className="envelope-scene__corner envelope-scene__corner--bl" />
-        <KoshkarCornerSVG size={90} className="envelope-scene__corner envelope-scene__corner--br" />
+        <KoshkarCornerSVG size={100} className="envelope-scene__corner envelope-scene__corner--tl" />
+        <KoshkarCornerSVG size={100} className="envelope-scene__corner envelope-scene__corner--tr" />
+        <KoshkarCornerSVG size={100} className="envelope-scene__corner envelope-scene__corner--bl" />
+        <KoshkarCornerSVG size={100} className="envelope-scene__corner envelope-scene__corner--br" />
       </div>
 
-      {/* The envelope */}
-      <div className="envelope-wrapper">
-        <div className={`envelope${isOpening || isFading ? ' envelope--opening' : ''}`}>
+      {/* Perspective + zoom target */}
+      <div
+        className={`envelope-perspective${isOpening ? ' envelope--opening' : ''}`}
+        ref={perspRef}
+        onAnimationEnd={handleAnimEnd}
+      >
+        {/* The envelope card */}
+        <div className="envelope-card">
 
-          {/* Body */}
-          <div className="envelope__body">
-            <div className="envelope__side-left" />
-            <div className="envelope__side-right" />
-            <div className="envelope__bottom-fold" />
+          {/* CENTER PANEL: visible through the 4 open flaps */}
+          <div className="envelope__center">
+            <KoshkarBorderSVG width="70%" height={22} id="ec1" />
+            <DiamondChainSVG  width="55%" height={10} id="ec2" />
+            <p className="envelope__center-eyebrow">Шақыру · Приглашение</p>
+            <p className="envelope__center-text">Жангельды &amp; Самал</p>
+            <DiamondChainSVG  width="55%" height={10} id="ec3" />
+            <KoshkarBorderSVG width="70%" height={22} id="ec4" />
+          </div>
 
-            <div className="envelope__body-border-top">
-              <JiyekBorderSVG height={10} id="bt" />
-            </div>
-            <div className="envelope__body-border-bottom">
-              <JiyekBorderSVG height={10} id="bb" />
-            </div>
-
-            {/* Paper that rises */}
-            <div
-              className="envelope__letter"
-              ref={letterRef}
-              onAnimationEnd={handleAnimEnd}
-            >
-              <div className="envelope__letter-preview">
-                <div style={{ color: 'var(--gold)', fontSize: '0.6em', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 6 }}>
-                  Шақыру · Приглашение
-                </div>
-                Жангельды &amp; Самал
-              </div>
+          {/* TOP FLAP — triangle pointing to center-bottom */}
+          <div className="envelope__flap envelope__flap--top">
+            <div className="envelope__flap-content">
+              <JiyekBorderSVG width="60%" height={12} id="ft1" />
+              <KoshkarBorderSVG width="50%" height={18} id="ft2" />
             </div>
           </div>
 
-          {/* Top flap */}
-          <div className="envelope__flap-wrapper">
-            <div className="envelope__flap" />
+          {/* BOTTOM FLAP */}
+          <div className="envelope__flap envelope__flap--bottom" />
 
-            {/* Ornaments inside the flap */}
-            <div className="envelope__flap-inner">
-              <KoshkarBorderSVG width="72%" height={26} id="flap" />
-              <DiamondChainSVG width="60%" height={10} id="fd" />
-            </div>
+          {/* LEFT FLAP */}
+          <div className="envelope__flap envelope__flap--left" />
 
-            {/* Wax seal at flap junction */}
-            <div className="envelope__seal">
-              <WaxSealSVG size={96} />
-            </div>
+          {/* RIGHT FLAP */}
+          <div className="envelope__flap envelope__flap--right" />
+
+          {/* WAX SEAL — centered on card, above all flaps */}
+          <div className="envelope__seal">
+            <WaxSealSVG size={104} />
           </div>
+
         </div>
       </div>
 
