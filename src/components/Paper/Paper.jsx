@@ -1,9 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Paper.css';
 import {
-  KoshkarVerticalBorderSVG,
-  JiyekBorderSVG,
-  DiamondChainSVG,
+  OrnamentBorder,
   ShanyrakSVG,
   KoshkarMuizSVG,
 } from '../OrnamentSVG/OrnamentSVG';
@@ -11,7 +9,6 @@ import {
 export default function Paper({ visible, children }) {
   const [show, setShow] = useState(false);
 
-  // One RAF to ensure the CSS transition triggers after mount
   useEffect(() => {
     if (!visible) return;
     const id = requestAnimationFrame(() => requestAnimationFrame(() => setShow(true)));
@@ -23,29 +20,14 @@ export default function Paper({ visible, children }) {
   return (
     <div className={`paper-stage${show ? ' paper-stage--visible' : ''}`}>
       <div className="paper">
-        {/* Side koshkar muiz borders */}
-        <div className="paper__border-left">
-          <KoshkarVerticalBorderSVG width={36} height="100%" id="pl" />
-        </div>
-        <div className="paper__border-right">
-          <KoshkarVerticalBorderSVG width={36} height="100%" id="pr" />
-        </div>
-
-        {/* Top ornament band */}
         <div className="paper__top-band">
-          <JiyekBorderSVG    width="100%" height={15} id="pt1" className="paper__band-border" />
-          <DiamondChainSVG   width="80%"  height={11} id="pt2" className="paper__band-chain" />
+          <OrnamentBorder row={2} height={40} />
         </div>
 
-        {/* All content */}
-        <div className="paper__content">
-          {children}
-        </div>
+        <div className="paper__content">{children}</div>
 
-        {/* Bottom ornament band */}
         <div className="paper__bottom-band">
-          <DiamondChainSVG   width="80%"  height={11} id="pb1" className="paper__band-chain" />
-          <JiyekBorderSVG    width="100%" height={15} id="pb2" className="paper__band-border" />
+          <OrnamentBorder row={3} height={40} />
         </div>
       </div>
     </div>
