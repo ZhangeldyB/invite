@@ -1,5 +1,5 @@
 import './InvitationReveal.css';
-import { ShanyrakSVG } from '../OrnamentSVG/OrnamentSVG';
+import { RingsSVG } from '../OrnamentSVG/OrnamentSVG';
 
 const kazakhLine = 'Сіздерді үйлену тойына шақырамыз';
 const words = kazakhLine.split(' ');
@@ -8,7 +8,7 @@ export default function InvitationReveal() {
   return (
     <div className="invitation">
       <div className="invitation__ornament">
-        <ShanyrakSVG size={64} />
+        <RingsSVG size={130} />
       </div>
 
       <p className="invitation__eyebrow">Шақыру&nbsp;&nbsp;·&nbsp;&nbsp;Приглашение</p>

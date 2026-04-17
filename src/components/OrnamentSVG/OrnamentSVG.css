@@ -1,0 +1,27 @@
+/* Sparkle twinkle: opacity + scale + slight rotate for shimmer */
+@keyframes sparkle-twinkle {
+  0%, 100% { opacity: 0.3;  transform: scale(0.7)  rotate(0deg);   }
+  50%      { opacity: 1;    transform: scale(1.15) rotate(45deg);  }
+}
+
+/* Dot pulse: opacity + scale, no rotate */
+@keyframes sparkle-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.7);  }
+  50%      { opacity: 0.9; transform: scale(1.25); }
+}
+
+.sparkle-anim {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: sparkle-twinkle 2.4s ease-in-out infinite;
+}
+
+.sparkle-anim--pulse {
+  animation: sparkle-pulse 2s ease-in-out infinite;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .sparkle-anim,
+  .sparkle-anim--pulse { animation: none; opacity: 0.8; }
+}

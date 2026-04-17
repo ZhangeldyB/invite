@@ -2,10 +2,9 @@ import { useRef } from 'react';
 import './EnvelopeScene.css';
 import {
   WaxSealSVG,
-  KoshkarCornerSVG,
-  KoshkarBorderSVG,
-  JiyekBorderSVG,
-  DiamondChainSVG,
+  CornerSparkleSVG,
+  SparkleBorderSVG,
+  SparkleClusterSVG,
 } from '../OrnamentSVG/OrnamentSVG';
 
 export default function EnvelopeScene({ phase, onOpen, onComplete }) {
@@ -30,12 +29,12 @@ export default function EnvelopeScene({ phase, onOpen, onComplete }) {
     >
       <div className="envelope-scene__bg" />
 
-      {/* Full-page corner koshkar ornaments */}
+      {/* Full-page corner floral ornaments */}
       <div className="envelope-scene__corners">
-        <KoshkarCornerSVG size={100} className="envelope-scene__corner envelope-scene__corner--tl" />
-        <KoshkarCornerSVG size={100} className="envelope-scene__corner envelope-scene__corner--tr" />
-        <KoshkarCornerSVG size={100} className="envelope-scene__corner envelope-scene__corner--bl" />
-        <KoshkarCornerSVG size={100} className="envelope-scene__corner envelope-scene__corner--br" />
+        <CornerSparkleSVG size={100} className="envelope-scene__corner envelope-scene__corner--tl" />
+        <CornerSparkleSVG size={100} className="envelope-scene__corner envelope-scene__corner--tr" />
+        <CornerSparkleSVG size={100} className="envelope-scene__corner envelope-scene__corner--bl" />
+        <CornerSparkleSVG size={100} className="envelope-scene__corner envelope-scene__corner--br" />
       </div>
 
       {/* Perspective + zoom target */}
@@ -49,19 +48,16 @@ export default function EnvelopeScene({ phase, onOpen, onComplete }) {
 
           {/* CENTER PANEL: visible through the 4 open flaps */}
           <div className="envelope__center">
-            <KoshkarBorderSVG width="70%" height={22} id="ec1" />
-            <DiamondChainSVG  width="55%" height={10} id="ec2" />
+            <SparkleBorderSVG width="72%" height={24} id="ec1" />
             <p className="envelope__center-eyebrow">Шақыру · Приглашение</p>
             <p className="envelope__center-text">Жангельды &amp; Самал</p>
-            <DiamondChainSVG  width="55%" height={10} id="ec3" />
-            <KoshkarBorderSVG width="70%" height={22} id="ec4" />
+            <SparkleBorderSVG width="72%" height={24} id="ec2" />
           </div>
 
           {/* TOP FLAP — triangle pointing to center-bottom */}
           <div className="envelope__flap envelope__flap--top">
             <div className="envelope__flap-content">
-              <JiyekBorderSVG width="60%" height={12} id="ft1" />
-              <KoshkarBorderSVG width="50%" height={18} id="ft2" />
+              <SparkleClusterSVG size={48} />
             </div>
           </div>
 

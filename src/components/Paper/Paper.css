@@ -31,46 +31,24 @@
     0 4px 40px rgba(139,105,20,0.1);
 }
 
-/* ── Left/right koshkar muiz borders ──────────────────────── */
-.paper__border-left {
-  position: absolute;
-  top: 0; bottom: 0; left: 0;
-  width: 36px;
-  color: var(--gold);
-  opacity: 0.5;
-  overflow: hidden;
-  pointer-events: none;
-}
-
+/* ── Left/right floral borders ────────────────────────────── */
+.paper__border-left,
 .paper__border-right {
   position: absolute;
-  top: 0; bottom: 0; right: 0;
-  width: 36px;
+  top: 0; bottom: 0;
+  width: 26px;
   color: var(--gold);
-  opacity: 0.5;
+  opacity: 0.55;
   overflow: hidden;
   pointer-events: none;
 }
+.paper__border-left  { left: 0; }
+.paper__border-right { right: 0; transform: scaleX(-1); }
 
 /* ── Top / bottom ornament bands ──────────────────────────── */
-.paper__top-band {
-  padding: 14px 48px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-}
-
-.paper__bottom-band {
-  padding: 0 48px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-}
-
-.paper__band-border { width: 100%; color: var(--gold); opacity: 0.65; }
-.paper__band-chain  { width: 80%;  color: var(--gold); opacity: 0.45; }
+.paper__top-band    { padding: 18px 40px 0; }
+.paper__bottom-band { padding: 0 40px 22px; }
+.paper__band        { color: var(--gold); opacity: 0.75; }
 
 /* ── Inner content ────────────────────────────────────────── */
 .paper__content {
@@ -82,23 +60,17 @@
 .paper__divider {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin: 28px 0;
+  justify-content: center;
+  gap: 14px;
+  margin: 32px 0;
   color: var(--gold);
-}
-
-.paper__divider-line {
-  flex: 1;
-  height: 1px;
-  background: var(--gold-light);
-  opacity: 0.8;
 }
 
 /* ── Mobile ───────────────────────────────────────────────── */
 @media (max-width: 520px) {
-  .paper__content       { padding: 8px 42px; }
+  .paper__content       { padding: 8px 36px; }
   .paper__top-band,
-  .paper__bottom-band   { padding-left: 38px; padding-right: 38px; }
+  .paper__bottom-band   { padding-left: 30px; padding-right: 30px; }
   .paper__border-left,
-  .paper__border-right  { width: 28px; }
+  .paper__border-right  { width: 20px; }
 }

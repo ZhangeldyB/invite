@@ -1,17 +1,15 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Paper.css';
 import {
-  KoshkarVerticalBorderSVG,
-  JiyekBorderSVG,
-  DiamondChainSVG,
-  ShanyrakSVG,
-  KoshkarMuizSVG,
+  SparkleVerticalBorderSVG,
+  SparkleBorderSVG,
+  SparkleClusterSVG,
+  RingsSVG,
 } from '../OrnamentSVG/OrnamentSVG';
 
 export default function Paper({ visible, children }) {
   const [show, setShow] = useState(false);
 
-  // One RAF to ensure the CSS transition triggers after mount
   useEffect(() => {
     if (!visible) return;
     const id = requestAnimationFrame(() => requestAnimationFrame(() => setShow(true)));
@@ -23,29 +21,21 @@ export default function Paper({ visible, children }) {
   return (
     <div className={`paper-stage${show ? ' paper-stage--visible' : ''}`}>
       <div className="paper">
-        {/* Side koshkar muiz borders */}
         <div className="paper__border-left">
-          <KoshkarVerticalBorderSVG width={36} height="100%" id="pl" />
+          <SparkleVerticalBorderSVG width={22} height="100%" count={18} />
         </div>
         <div className="paper__border-right">
-          <KoshkarVerticalBorderSVG width={36} height="100%" id="pr" />
+          <SparkleVerticalBorderSVG width={22} height="100%" count={18} />
         </div>
 
-        {/* Top ornament band */}
         <div className="paper__top-band">
-          <JiyekBorderSVG    width="100%" height={15} id="pt1" className="paper__band-border" />
-          <DiamondChainSVG   width="80%"  height={11} id="pt2" className="paper__band-chain" />
+          <SparkleBorderSVG width="100%" height={22} count={13} className="paper__band" />
         </div>
 
-        {/* All content */}
-        <div className="paper__content">
-          {children}
-        </div>
+        <div className="paper__content">{children}</div>
 
-        {/* Bottom ornament band */}
         <div className="paper__bottom-band">
-          <DiamondChainSVG   width="80%"  height={11} id="pb1" className="paper__band-chain" />
-          <JiyekBorderSVG    width="100%" height={15} id="pb2" className="paper__band-border" />
+          <SparkleBorderSVG width="100%" height={22} count={13} className="paper__band" />
         </div>
       </div>
     </div>
@@ -55,11 +45,9 @@ export default function Paper({ visible, children }) {
 export function PaperDivider() {
   return (
     <div className="paper__divider">
-      <div className="paper__divider-line" />
-      <KoshkarMuizSVG size={44} />
-      <ShanyrakSVG    size={30} />
-      <KoshkarMuizSVG size={44} style={{ transform: 'scaleX(-1)' }} />
-      <div className="paper__divider-line" />
+      <SparkleClusterSVG size={54} style={{ opacity: 0.75 }} />
+      <RingsSVG size={120} />
+      <SparkleClusterSVG size={54} style={{ opacity: 0.75, transform: 'scaleX(-1)' }} />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import './EventDetails.css';
-import { KoshkarCornerSVG } from '../OrnamentSVG/OrnamentSVG';
+import { CornerSparkleSVG } from '../OrnamentSVG/OrnamentSVG';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 function EventCard({ icon, label, value, valueSub }) {
@@ -23,10 +23,10 @@ export default function EventDetails() {
       </div>
 
       <div className="event-details__frame">
-        <KoshkarCornerSVG size={38} className="event-details__corner event-details__corner--tl" />
-        <KoshkarCornerSVG size={38} className="event-details__corner event-details__corner--tr" />
-        <KoshkarCornerSVG size={38} className="event-details__corner event-details__corner--bl" />
-        <KoshkarCornerSVG size={38} className="event-details__corner event-details__corner--br" />
+        <CornerSparkleSVG size={38} className="event-details__corner event-details__corner--tl" />
+        <CornerSparkleSVG size={38} className="event-details__corner event-details__corner--tr" />
+        <CornerSparkleSVG size={38} className="event-details__corner event-details__corner--bl" />
+        <CornerSparkleSVG size={38} className="event-details__corner event-details__corner--br" />
 
         <div className="event-details__cards">
           <EventCard icon="📅" label="Күні · Дата"       value="29 тамыз 2025"   valueSub="29 августа 2025" />
