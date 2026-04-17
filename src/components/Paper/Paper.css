@@ -31,14 +31,51 @@
     0 4px 40px rgba(139,105,20,0.1);
 }
 
+/* ── Left/right koshkar muiz borders ──────────────────────── */
+.paper__border-left {
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 36px;
+  color: var(--gold);
+  opacity: 0.5;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.paper__border-right {
+  position: absolute;
+  top: 0; bottom: 0; right: 0;
+  width: 36px;
+  color: var(--gold);
+  opacity: 0.5;
+  overflow: hidden;
+  pointer-events: none;
+}
+
 /* ── Top / bottom ornament bands ──────────────────────────── */
-.paper__top-band    { padding: 18px 24px 0; }
-.paper__bottom-band { padding: 0 24px 22px; }
+.paper__top-band {
+  padding: 14px 48px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.paper__bottom-band {
+  padding: 0 48px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.paper__band-border { width: 100%; color: var(--gold); opacity: 0.65; }
+.paper__band-chain  { width: 80%;  color: var(--gold); opacity: 0.45; }
 
 /* ── Inner content ────────────────────────────────────────── */
 .paper__content {
   flex: 1;
-  padding: 10px 40px 14px;
+  padding: 10px 54px 14px;
 }
 
 /* ── Divider between sections ─────────────────────────────── */
@@ -59,7 +96,9 @@
 
 /* ── Mobile ───────────────────────────────────────────────── */
 @media (max-width: 520px) {
-  .paper__content       { padding: 8px 20px; }
+  .paper__content       { padding: 8px 42px; }
   .paper__top-band,
-  .paper__bottom-band   { padding-left: 14px; padding-right: 14px; }
+  .paper__bottom-band   { padding-left: 38px; padding-right: 38px; }
+  .paper__border-left,
+  .paper__border-right  { width: 28px; }
 }

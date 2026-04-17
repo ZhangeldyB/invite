@@ -3,7 +3,9 @@ import './EnvelopeScene.css';
 import {
   WaxSealSVG,
   KoshkarCornerSVG,
-  OrnamentBorder,
+  KoshkarBorderSVG,
+  JiyekBorderSVG,
+  DiamondChainSVG,
 } from '../OrnamentSVG/OrnamentSVG';
 
 export default function EnvelopeScene({ phase, onOpen, onComplete }) {
@@ -47,14 +49,21 @@ export default function EnvelopeScene({ phase, onOpen, onComplete }) {
 
           {/* CENTER PANEL: visible through the 4 open flaps */}
           <div className="envelope__center">
-            <OrnamentBorder row={3} height={34} style={{ width: '72%' }} />
+            <KoshkarBorderSVG width="70%" height={22} id="ec1" />
+            <DiamondChainSVG  width="55%" height={10} id="ec2" />
             <p className="envelope__center-eyebrow">Шақыру · Приглашение</p>
             <p className="envelope__center-text">Жангельды &amp; Самал</p>
-            <OrnamentBorder row={3} height={34} style={{ width: '72%' }} />
+            <DiamondChainSVG  width="55%" height={10} id="ec3" />
+            <KoshkarBorderSVG width="70%" height={22} id="ec4" />
           </div>
 
           {/* TOP FLAP — triangle pointing to center-bottom */}
-          <div className="envelope__flap envelope__flap--top" />
+          <div className="envelope__flap envelope__flap--top">
+            <div className="envelope__flap-content">
+              <JiyekBorderSVG width="60%" height={12} id="ft1" />
+              <KoshkarBorderSVG width="50%" height={18} id="ft2" />
+            </div>
+          </div>
 
           {/* BOTTOM FLAP */}
           <div className="envelope__flap envelope__flap--bottom" />

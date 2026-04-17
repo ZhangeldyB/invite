@@ -1,27 +1,14 @@
-/* Horizontal ornament border sliced from /ornaments.jpg (5 rows).
- * row 0: mixed knots (not tileable, skip)
- * row 1: diamond-knot chain
- * row 2: spiral wave chain
- * row 3: oval chain
- * row 4: heart braid
+/*
+ * Kazakh ornament SVG components
+ *
+ * Қошқар мүйіз (Koshkar Muiz) — ram-horn double spiral; the most
+ * iconic Kazakh motif. Constructed with arc segments so the spiral
+ * reads clearly at any size.
+ *
+ * Шаңырақ (Shanyrak) — yurt crown wheel.
+ *
+ * Жиек (Jiyek) — step-meander border, found on every Kazakh textile.
  */
-export function OrnamentBorder({ row = 2, height = 34, className = '', style = {} }) {
-  const positionY = `${(row / 4) * 100}%`;
-  return (
-    <div
-      className={className}
-      aria-hidden="true"
-      style={{
-        height,
-        backgroundImage: 'url(/ornaments.jpg)',
-        backgroundSize: 'auto 500%',
-        backgroundRepeat: 'repeat-x',
-        backgroundPositionY: positionY,
-        ...style,
-      }}
-    />
-  );
-}
 
 /* ─────────────────────────────────────────────────────────────────
  * Қошқар мүйіз — single S-scroll with two inward-curling horn tips.
@@ -97,6 +84,132 @@ export function KoshkarCornerSVG({ size = 70, className = '' }) {
   );
 }
 
+/* ─────────────────────────────────────────────────────────────────
+ * Horizontal koshkar muiz repeating border (SVG <pattern>)
+ * Alternating upper and lower S-scroll waves.
+ * viewBox height 32, tile width 80
+ * ───────────────────────────────────────────────────────────────── */
+export function KoshkarBorderSVG({ width = '100%', height = 32, id = 'kb', className = '' }) {
+  const pid = `koshkar-h-${id}`;
+  return (
+    <svg viewBox={`0 0 800 32`} width={width} height={height}
+      className={className} style={{ color: 'inherit', display: 'block' }}
+      preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <pattern id={pid} x="0" y="0" width="80" height="32" patternUnits="userSpaceOnUse">
+          {/* Upper horn: curves up from left, spirals at each end */}
+          <path
+            d="M 0,16
+               C 6,10 14,5 22,5
+               C 30,5 33,10 30,15
+               C 28,19 22,20 19,17
+               C 17,14 19,11 22,12
+               M 40,16
+               C 34,10 26,5 18,5"
+            fill="none" stroke="currentColor" strokeWidth="1.6"
+            strokeLinecap="round"/>
+          <path
+            d="M 40,16
+               C 46,10 54,5 62,5
+               C 70,5 73,10 70,15
+               C 68,19 62,20 59,17
+               C 57,14 59,11 62,12
+               M 80,16
+               C 74,10 66,5 58,5"
+            fill="none" stroke="currentColor" strokeWidth="1.6"
+            strokeLinecap="round"/>
+          {/* Lower horn: mirror */}
+          <path
+            d="M 0,16
+               C 6,22 14,27 22,27
+               C 30,27 33,22 30,17
+               C 28,13 22,12 19,15
+               C 17,18 19,21 22,20
+               M 40,16
+               C 34,22 26,27 18,27"
+            fill="none" stroke="currentColor" strokeWidth="1.6"
+            strokeLinecap="round"/>
+          <path
+            d="M 40,16
+               C 46,22 54,27 62,27
+               C 70,27 73,22 70,17
+               C 68,13 62,12 59,15
+               C 57,18 59,21 62,20
+               M 80,16
+               C 74,22 66,27 58,27"
+            fill="none" stroke="currentColor" strokeWidth="1.6"
+            strokeLinecap="round"/>
+          {/* Spiral tip dots */}
+          <circle cx="22" cy="12" r="1.4" fill="currentColor"/>
+          <circle cx="62" cy="12" r="1.4" fill="currentColor"/>
+          <circle cx="22" cy="20" r="1.4" fill="currentColor"/>
+          <circle cx="62" cy="20" r="1.4" fill="currentColor"/>
+        </pattern>
+      </defs>
+      <rect width="800" height="32" fill={`url(#${pid})`}/>
+    </svg>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * Vertical koshkar muiz border — same pattern rotated 90°.
+ * ───────────────────────────────────────────────────────────────── */
+export function KoshkarVerticalBorderSVG({ width = 32, height = '100%', id = 'kv', className = '' }) {
+  const pid = `koshkar-v-${id}`;
+  return (
+    <svg viewBox="0 0 32 800" width={width} height={height}
+      className={className} style={{ color: 'inherit', display: 'block' }}
+      preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <pattern id={pid} x="0" y="0" width="32" height="80" patternUnits="userSpaceOnUse">
+          {/* Left horn */}
+          <path
+            d="M 16,0
+               C 10,6 5,14 5,22
+               C 5,30 10,33 15,30
+               C 19,28 20,22 17,19
+               C 14,17 11,19 12,22
+               M 16,40
+               C 10,34 5,26 5,18"
+            fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+          <path
+            d="M 16,40
+               C 10,46 5,54 5,62
+               C 5,70 10,73 15,70
+               C 19,68 20,62 17,59
+               C 14,57 11,59 12,62
+               M 16,80
+               C 10,74 5,66 5,58"
+            fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+          {/* Right horn mirror */}
+          <path
+            d="M 16,0
+               C 22,6 27,14 27,22
+               C 27,30 22,33 17,30
+               C 13,28 12,22 15,19
+               C 18,17 21,19 20,22
+               M 16,40
+               C 22,34 27,26 27,18"
+            fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+          <path
+            d="M 16,40
+               C 22,46 27,54 27,62
+               C 27,70 22,73 17,70
+               C 13,68 12,62 15,59
+               C 18,57 21,59 20,62
+               M 16,80
+               C 22,74 27,66 27,58"
+            fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+          <circle cx="12" cy="22" r="1.4" fill="currentColor"/>
+          <circle cx="20" cy="22" r="1.4" fill="currentColor"/>
+          <circle cx="12" cy="62" r="1.4" fill="currentColor"/>
+          <circle cx="20" cy="62" r="1.4" fill="currentColor"/>
+        </pattern>
+      </defs>
+      <rect width="32" height="800" fill={`url(#${pid})`}/>
+    </svg>
+  );
+}
 
 /* ─────────────────────────────────────────────────────────────────
  * Шаңырақ — yurt crown seen from above.
@@ -150,6 +263,51 @@ export function ShanyrakSVG({ size = 80, className = '' }) {
   );
 }
 
+/* ─────────────────────────────────────────────────────────────────
+ * Жиек — classic Kazakh step-meander (tooth) border.
+ * Repeating crenellation pattern — top and bottom combined.
+ * ───────────────────────────────────────────────────────────────── */
+export function JiyekBorderSVG({ width = '100%', height = 16, id = 'jb', className = '' }) {
+  const pid = `jiyek-${id}`;
+  return (
+    <svg viewBox="0 0 800 16" width={width} height={height}
+      className={className} style={{ color: 'inherit', display: 'block' }}
+      preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <pattern id={pid} x="0" y="0" width="32" height="16" patternUnits="userSpaceOnUse">
+          {/* Top teeth */}
+          <polyline points="0,8 0,2 8,2 8,8 16,8 16,2 24,2 24,8 32,8"
+            fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="miter"/>
+          {/* Bottom teeth (mirror) */}
+          <polyline points="0,8 0,14 8,14 8,8 16,8 16,14 24,14 24,8 32,8"
+            fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="miter"/>
+        </pattern>
+      </defs>
+      <rect width="800" height="16" fill={`url(#${pid})`}/>
+    </svg>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * Diamond chain — lightweight accent between borders.
+ * ───────────────────────────────────────────────────────────────── */
+export function DiamondChainSVG({ width = '100%', height = 12, id = 'dc', className = '' }) {
+  const pid = `diamond-${id}`;
+  return (
+    <svg viewBox="0 0 800 12" width={width} height={height}
+      className={className} style={{ color: 'inherit', display: 'block' }}
+      preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <pattern id={pid} x="0" y="0" width="20" height="12" patternUnits="userSpaceOnUse">
+          <polygon points="10,1 19,6 10,11 1,6"
+            fill="none" stroke="currentColor" strokeWidth="1.2"/>
+          <circle cx="10" cy="6" r="1.6" fill="currentColor"/>
+        </pattern>
+      </defs>
+      <rect width="800" height="12" fill={`url(#${pid})`}/>
+    </svg>
+  );
+}
 
 /* ─────────────────────────────────────────────────────────────────
  * Wax Seal — ZS monogram, crimson disc with gold trim.
