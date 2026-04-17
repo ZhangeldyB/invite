@@ -1,5 +1,12 @@
 import './EventDetails.css';
-import { CornerSparkleSVG } from '../OrnamentSVG/OrnamentSVG';
+import {
+  CornerSparkleSVG,
+  CalendarIconSVG,
+  ClockIconSVG,
+  LocationPinSVG,
+  BuildingIconSVG,
+  MapIconSVG,
+} from '../OrnamentSVG/OrnamentSVG';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 function EventCard({ icon, label, value, valueSub }) {
@@ -29,10 +36,10 @@ export default function EventDetails() {
         <CornerSparkleSVG size={38} className="event-details__corner event-details__corner--br" />
 
         <div className="event-details__cards">
-          <EventCard icon="📅" label="Күні · Дата"       value="29 тамыз 2025"   valueSub="29 августа 2025" />
-          <EventCard icon="🕕" label="Уақыты · Время"    value="18:00"           valueSub="Бастап · Начало" />
-          <EventCard icon="📍" label="Қала · Город"      value="Қостанай"        valueSub="Костанай" />
-          <EventCard icon="🏛️" label="Мейрамхана · Ресторан" value="Астам"      valueSub="Ресторан Астам" />
+          <EventCard icon={<CalendarIconSVG   size={40} />} label="Күні · Дата"             value="29 тамыз 2025"  valueSub="29 августа 2025" />
+          <EventCard icon={<ClockIconSVG      size={40} />} label="Уақыты · Время"          value="16:00" />
+          <EventCard icon={<LocationPinSVG    size={40} />} label="Қала · Город"            value="Қостанай"       valueSub="Костанай" />
+          <EventCard icon={<BuildingIconSVG   size={40} />} label="Мейрамхана · Ресторан"   value="Астам" />
         </div>
 
         <a
@@ -41,7 +48,8 @@ export default function EventDetails() {
           rel="noopener noreferrer"
           className="event-details__map-btn"
         >
-          <span>🗺️&nbsp; 2GIS картасында · Открыть в 2GIS</span>
+          <MapIconSVG size={18} />
+          <span>2GIS картасында · Открыть в 2GIS</span>
         </a>
       </div>
     </div>

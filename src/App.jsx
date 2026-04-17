@@ -4,6 +4,7 @@ import './App.css';
 import EnvelopeScene from './components/EnvelopeScene/EnvelopeScene';
 import Paper, { PaperDivider } from './components/Paper/Paper';
 import InvitationReveal from './components/InvitationReveal/InvitationReveal';
+import Hosts from './components/Hosts/Hosts';
 import EventDetails from './components/EventDetails/EventDetails';
 import RSVPForm from './components/RSVPForm/RSVPForm';
 import AdminModal from './components/AdminModal/AdminModal';
@@ -21,7 +22,7 @@ export default function App() {
   const handleOpen = useCallback(() => {
     setPhase('opening');
     // Fallback: if animationend never fires (e.g. reduced-motion), advance after 2.5s
-    setTimeout(() => setPhase(p => p === 'opening' ? 'gone' : p), 2500);
+    setTimeout(() => setPhase(p => p === 'opening' ? 'gone' : p), 3500);
   }, []);
 
   const handleComplete = useCallback(() => {
@@ -37,7 +38,10 @@ export default function App() {
     <>
       {/* Paper renders behind the envelope during burst; fades in as envelope zooms away */}
       <Paper visible={showPaper}>
+        <p className="paper-wedding-type">Үйлену той&nbsp;&nbsp;·&nbsp;&nbsp;Свадьба</p>
         <InvitationReveal />
+        <PaperDivider />
+        <Hosts />
         <PaperDivider />
         <EventDetails />
         <PaperDivider />

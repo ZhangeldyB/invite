@@ -1,7 +1,7 @@
 import './InvitationReveal.css';
 import { RingsSVG } from '../OrnamentSVG/OrnamentSVG';
 
-const kazakhLine = 'Сіздерді үйлену тойына шақырамыз';
+const kazakhLine = 'Сіздерді үйлену тойға шақырамыз';
 const words = kazakhLine.split(' ');
 
 export default function InvitationReveal() {
@@ -29,7 +29,7 @@ export default function InvitationReveal() {
         Жангельды &amp; Самал
       </div>
 
-      <p className="invitation__sub">Жангельды и Самал приглашают вас на свадьбу</p>
+      <p className="invitation__sub">Приглашаем вас на свадьбу</p>
 
 
     </div>

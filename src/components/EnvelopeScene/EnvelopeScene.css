@@ -61,9 +61,10 @@
   position: relative;
 }
 
-/* Zoom-rush animation — both classes on the SAME element, no space */
+/* Zoom-rush animation — waits for flaps to finish (0.75s) + a beat so
+ * the guest sees the open envelope and paper behind it before the rush. */
 .envelope-perspective.envelope--opening {
-  animation: envelope-rush 0.85s cubic-bezier(0.55, 0, 1, 0.45) 0.38s both;
+  animation: envelope-rush 0.85s cubic-bezier(0.55, 0, 1, 0.45) 1.3s both;
 }
 
 @keyframes envelope-rush {

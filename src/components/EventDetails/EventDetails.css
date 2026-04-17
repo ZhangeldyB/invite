@@ -69,7 +69,14 @@
 .event-card:nth-child(3) { transition-delay: 0.24s; }
 .event-card:nth-child(4) { transition-delay: 0.36s; }
 
-.event-card__icon { font-size: 1.6rem; line-height: 1; margin-bottom: 8px; }
+.event-card__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--gold);
+  margin-bottom: 10px;
+  min-height: 40px;
+}
 
 .event-card__label {
   font-family: var(--font-body);
@@ -96,7 +103,9 @@
 }
 
 .event-details__map-btn {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   width: fit-content;
   margin: 0 auto;
   padding: 12px 28px;
@@ -124,6 +133,9 @@
   z-index: 0;
 }
 
+.event-details__map-btn > * { position: relative; z-index: 1; }
 .event-details__map-btn:hover::before { transform: scaleX(1); }
-.event-details__map-btn span { position: relative; z-index: 1; }
-.event-details__map-btn:hover span { color: #fff; }
+.event-details__map-btn:hover { color: #fff; }
+
+/* Center the map button in the frame */
+.event-details__frame { text-align: center; }

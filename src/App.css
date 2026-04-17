@@ -34,6 +34,17 @@ body.no-scroll {
   overflow: hidden;
 }
 
+/* ── Paper page header ── */
+.paper-wedding-type {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  padding: 8px 0 12px;
+}
+
 /* ── Main content fade-in ── */
 .main-content {
   opacity: 0;

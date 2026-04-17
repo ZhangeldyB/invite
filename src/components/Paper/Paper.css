@@ -9,9 +9,10 @@
   overflow-y: auto;
   overflow-x: hidden;
   background: var(--ivory);
-  /* Fade-in timed to overlap the envelope rush */
+  /* Fade-in completes before the envelope rush kicks in at 1.3s — paper
+   * is fully visible behind the open flaps during the hold-pause. */
   opacity: 0;
-  transition: opacity 0.9s ease 0.35s; /* starts at 350ms, syncs with rush */
+  transition: opacity 0.55s ease 0.4s;
 }
 
 .paper-stage--visible {
