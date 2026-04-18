@@ -160,6 +160,23 @@ export function HeartSVG({ size = 22, className = '', style = {} }) {
   );
 }
 
+/* ─── Music note (eighth-note pair) ─────────────────────────── */
+export function MusicNoteSVG({ size = 22, className = '', style = {} }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size}
+      className={className} style={{ color: 'inherit', ...style }} aria-hidden="true">
+      {/* Two eighth-note heads */}
+      <ellipse cx="7"  cy="18"   rx="3"   ry="2.3" fill="currentColor" transform="rotate(-18 7 18)"/>
+      <ellipse cx="17" cy="16.5" rx="3"   ry="2.3" fill="currentColor" transform="rotate(-18 17 16.5)"/>
+      {/* Stems */}
+      <path d="M 9.6,17.4 L 9.6,5 L 19.6,3 L 19.6,15.8"
+        fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+      {/* Beam (top flag joining the two stems) */}
+      <path d="M 9.6,5 L 19.6,3 L 19.6,6 L 9.6,8 Z" fill="currentColor" opacity="0.85"/>
+    </svg>
+  );
+}
+
 /* ─── Line-art event icons — match gold stroke aesthetic ──── */
 
 export function CalendarIconSVG({ size = 36, className = '' }) {

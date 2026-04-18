@@ -1,0 +1,72 @@
+.music-toggle {
+  position: fixed;
+  right: 18px;
+  top: 18px;
+  z-index: 110; /* above envelope (z:100) */
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  background: #fffef8;
+  color: var(--gold);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 14px rgba(139, 105, 20, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.music-toggle:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(139, 105, 20, 0.26);
+}
+
+.music-toggle:active { transform: scale(0.96); }
+
+/* Note bobs while playing */
+.music-toggle--playing svg {
+  animation: music-bob 1.4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes music-bob {
+  0%, 100% { transform: translateY(0)     rotate(-2deg); }
+  50%      { transform: translateY(-2px)  rotate(2deg);  }
+}
+
+/* Expanding gold rings around the button when playing — audio waves */
+.music-toggle__ring {
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.music-toggle--playing .music-toggle__ring {
+  animation: music-wave 2s ease-out infinite;
+}
+.music-toggle--playing .music-toggle__ring--2 { animation-delay: 1s; }
+
+@keyframes music-wave {
+  0%   { transform: scale(0.9); opacity: 0.55; }
+  100% { transform: scale(1.6); opacity: 0;    }
+}
+
+/* Diagonal slash shown when muted */
+.music-toggle__slash {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 72%;
+  height: 2px;
+  background: var(--gold);
+  transform: translate(-50%, -50%) rotate(-45deg);
+  border-radius: 1px;
+  box-shadow: 0 0 0 1.2px #fffef8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .music-toggle--playing svg { animation: none; }
+  .music-toggle--playing .music-toggle__ring { animation: none; opacity: 0; }
+}

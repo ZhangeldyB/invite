@@ -8,6 +8,7 @@ import Hosts from './components/Hosts/Hosts';
 import EventDetails from './components/EventDetails/EventDetails';
 import RSVPForm from './components/RSVPForm/RSVPForm';
 import AdminModal from './components/AdminModal/AdminModal';
+import MusicToggle from './components/MusicToggle/MusicToggle';
 
 export default function App() {
   // phase: 'envelope' → 'opening' → 'open' → 'gone'
@@ -82,6 +83,8 @@ export default function App() {
           onComplete={handleComplete}
         />
       )}
+
+      <MusicToggle />
 
       <AdminModal />
     </>
