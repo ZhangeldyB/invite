@@ -4,23 +4,18 @@ import { MusicNoteSVG } from '../OrnamentSVG/OrnamentSVG';
 
 export default function MusicToggle() {
   const audioRef = useRef(null);
-  // Optimistic "on" — the UI shows playing state from the start.
-  // Real audio starts immediately or on the first user interaction.
+  const userPausedRef = useRef(false);
   const [playing, setPlaying] = useState(true);
 
-  // Try to autoplay on mount. If the browser blocks it (most do until the
-  // user has interacted with the page), fall back to starting on the first
-  // user interaction anywhere — which naturally includes the envelope click.
   useEffect(() => {
     const a = audioRef.current;
     if (!a) return;
     a.volume = 0.55;
 
-    // Stay optimistic on failure — the interaction listener below will retry.
     a.play().catch(() => {});
 
     const startOnInteraction = () => {
-      if (!a.paused) return;
+      if (!a.paused || userPausedRef.current) return;
       a.play().then(() => setPlaying(true)).catch(() => {});
     };
     const opts = { capture: true };
@@ -44,8 +39,10 @@ export default function MusicToggle() {
     const a = audioRef.current;
     if (!a) return;
     if (a.paused) {
+      userPausedRef.current = false;
       a.play().then(() => setPlaying(true)).catch(() => {});
     } else {
+      userPausedRef.current = true;
       a.pause();
       setPlaying(false);
     }

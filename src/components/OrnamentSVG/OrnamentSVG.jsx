@@ -125,9 +125,6 @@ export function RingsSVG({ size = 110, className = '' }) {
       {/* Right ring */}
       <ellipse cx="76" cy="44" rx="22" ry="22" fill="none" stroke="currentColor" strokeWidth="2.4"/>
       <ellipse cx="76" cy="44" rx="18" ry="18" fill="none" stroke="currentColor" strokeWidth="0.7" opacity="0.5"/>
-      {/* Right ring appears on top at right-overlap */}
-      <path d="M 60,28.5 A 22,22 0 0 1 66,60.5" fill="none" stroke="#fffef8" strokeWidth="3.6"/>
-      <path d="M 60,28.5 A 22,22 0 0 1 66,60.5" fill="none" stroke="currentColor" strokeWidth="2.4"/>
       {/* Diamond atop left ring */}
       <g transform="translate(44, 14)">
         <path d="M 0,0 L 4.5,4.5 L 0,11 L -4.5,4.5 Z" fill="currentColor"/>
