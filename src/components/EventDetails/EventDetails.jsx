@@ -35,7 +35,7 @@ export default function EventDetails() {
         <CornerSparkleSVG size={38} className="event-details__corner event-details__corner--br" />
 
         <div className="event-details__cards">
-          <EventCard icon={<CalendarIconSVG   size={40} />} label="Күні"         value="29 тамыз 2025" />
+          <EventCard icon={<CalendarIconSVG   size={40} />} label="Күні"         value="29 тамыз 2026" />
           <EventCard icon={<ClockIconSVG      size={40} />} label="Уақыты"       value="16:00" />
           <EventCard icon={<LocationPinSVG    size={40} />} label="Қала"         value="Қостанай" />
           <EventCard icon={<BuildingIconSVG   size={40} />} label="Мейрамхана"   value="Астам" />

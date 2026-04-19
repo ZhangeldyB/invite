@@ -70,7 +70,7 @@ export default function App() {
             color: 'var(--gold-dark)',
             marginTop: 4,
           }}>
-            29 тамыз 2025 · Қостанай
+            29 тамыз 2026 · Қостанай
           </p>
         </footer>
       </Paper>
