@@ -79,7 +79,7 @@ export default function RSVPForm() {
             <label className="rsvp__radio-label">
               <input type="radio" name="attendance" value="with_guest"
                 checked={attendance === 'with_guest'} onChange={() => handleAttendance('with_guest')} />
-              Бірге келемін
+              Менімен бірге келеді
             </label>
           </div>
         </div>

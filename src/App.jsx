@@ -36,6 +36,57 @@ export default function App() {
   const showEnvelope = phase !== 'gone';
   const showPaper    = phase === 'opening' || phase === 'open' || phase === 'gone';
 
+  // Auto-scroll after envelope opens; pauses on interaction, resumes after 5s idle
+  useEffect(() => {
+    if (phase !== 'gone') return;
+    const stage = document.querySelector('.paper-stage');
+    if (!stage) return;
+
+    let rafId;
+    let resumeTimer;
+    let accum = 0;
+
+    const tick = () => {
+      if (stage.scrollTop + stage.clientHeight >= stage.scrollHeight) return;
+      accum += 0.33;
+      if (accum >= 1) {
+        stage.scrollTop += Math.floor(accum);
+        accum -= Math.floor(accum);
+      }
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const startScrolling = () => {
+      accum = 0;
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const onInteraction = () => {
+      cancelAnimationFrame(rafId);
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(startScrolling, 5000);
+    };
+
+    const startId = setTimeout(startScrolling, 500);
+
+    const opts = { passive: true };
+    stage.addEventListener('wheel',       onInteraction, opts);
+    stage.addEventListener('touchstart',  onInteraction, opts);
+    stage.addEventListener('touchmove',   onInteraction, opts);
+    stage.addEventListener('pointerdown', onInteraction, opts);
+
+    return () => {
+      clearTimeout(startId);
+      clearTimeout(resumeTimer);
+      cancelAnimationFrame(rafId);
+      stage.removeEventListener('wheel',       onInteraction);
+      stage.removeEventListener('touchstart',  onInteraction);
+      stage.removeEventListener('touchmove',   onInteraction);
+      stage.removeEventListener('pointerdown', onInteraction);
+    };
+  }, [phase]);
+
   const headerRef = useRef(null);
   useEffect(() => {
     if (!showPaper) return;
