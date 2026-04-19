@@ -1,5 +1,4 @@
 import './InvitationReveal.css';
-import { RingsSVG } from '../OrnamentSVG/OrnamentSVG';
 import { PaperDivider } from '../Paper/Paper';
 
 const GREETING_LINES = [
@@ -14,10 +13,6 @@ const GREETING_LINES = [
 export default function InvitationReveal() {
   return (
     <div className="invitation">
-      <div className="invitation__ornament">
-        <RingsSVG size={130} />
-      </div>
-
       <div className="invitation__greeting">
         {GREETING_LINES.map((line, i) => (
           <span key={i} className="invitation__greeting-line">{line}</span>

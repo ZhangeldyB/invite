@@ -32,6 +32,36 @@
     0 4px 40px rgba(139,105,20,0.1);
 }
 
+/* ── Flower corner frames ─────────────────────────────────── */
+.paper__corner {
+  position: absolute;
+  width: clamp(115px, 32vw, 253px);
+  pointer-events: none;
+  z-index: 2;
+}
+.paper__corner--tl {
+  top: 0;
+  left: 0;
+}
+.paper__corner--br {
+  top: var(--header-bottom, -999px);
+  right: 0;
+  transform: translateY(-100%);
+}
+
+/* ── Scattered vertical flower frames ────────────────────── */
+.paper__floral {
+  position: absolute;
+  width: clamp(69px, 11.5vw, 115px);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.92;
+}
+.paper__floral--l1 { left: 0; top: 22%; }
+.paper__floral--r1 { right: 0; top: 40%; }
+.paper__floral--l2 { left: 0; top: 44%; }
+.paper__floral--r2 { right: 0; top: 76%; }
+
 /* ── Left/right floral borders ────────────────────────────── */
 .paper__border-left,
 .paper__border-right {
@@ -52,13 +82,15 @@
   color: var(--gold);
   opacity: 0.75;
 }
-.paper__top-band    { padding: 18px 40px 0; }
-.paper__bottom-band { padding: 0 40px 22px; }
+.paper__top-band    { padding: 18px 40px 0;  position: relative; z-index: 2; }
+.paper__bottom-band { padding: 0 40px 22px; position: relative; z-index: 2; }
 
 /* ── Inner content ────────────────────────────────────────── */
 .paper__content {
   flex: 1;
   padding: 10px 54px 14px;
+  position: relative;
+  z-index: 2;
 }
 
 /* ── Divider between sections ─────────────────────────────── */

@@ -1,5 +1,11 @@
 import { useEffect, useState } from 'react';
 import './Paper.css';
+import cornerTL  from '../../assets/left-top-no-bg.png';
+import cornerBR  from '../../assets/right-botom-no-bg.png';
+import floralV1 from '../../assets/vertical1.png';
+import floralV2 from '../../assets/vertical2.png';
+import floralV3 from '../../assets/vertical3.png';
+import floralV4 from '../../assets/vertical4.png';
 import {
   SparkleVerticalBorderSVG,
   SparkleBorderSVG,
@@ -21,6 +27,12 @@ export default function Paper({ visible, children }) {
   return (
     <div className={`paper-stage${show ? ' paper-stage--visible' : ''}`}>
       <div className="paper">
+        <img src={cornerTL} alt="" className="paper__corner paper__corner--tl" />
+        <img src={cornerBR} alt="" className="paper__corner paper__corner--br" />
+        <img src={floralV1} alt="" className="paper__floral paper__floral--l1" />
+        <img src={floralV2} alt="" className="paper__floral paper__floral--r1" />
+        <img src={floralV3} alt="" className="paper__floral paper__floral--l2" />
+        <img src={floralV4} alt="" className="paper__floral paper__floral--r2" />
         <div className="paper__border-left">
           <SparkleVerticalBorderSVG width={22} height="100%" count={18} />
         </div>

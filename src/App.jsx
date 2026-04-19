@@ -1,6 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import './App.css';
 
+import headerImg from './assets/header.png';
 import EnvelopeScene from './components/EnvelopeScene/EnvelopeScene';
 import Paper, { PaperDivider } from './components/Paper/Paper';
 import InvitationReveal from './components/InvitationReveal/InvitationReveal';
@@ -35,10 +36,29 @@ export default function App() {
   const showEnvelope = phase !== 'gone';
   const showPaper    = phase === 'opening' || phase === 'open' || phase === 'gone';
 
+  const headerRef = useRef(null);
+  useEffect(() => {
+    if (!showPaper) return;
+    const measure = () => {
+      const paper = document.querySelector('.paper');
+      if (!paper || !headerRef.current) return;
+      const bottom = headerRef.current.getBoundingClientRect().bottom
+                   - paper.getBoundingClientRect().top;
+      paper.style.setProperty('--header-bottom', `${bottom}px`);
+    };
+    const id = requestAnimationFrame(measure);
+    const ro = new ResizeObserver(measure);
+    if (headerRef.current) ro.observe(headerRef.current);
+    return () => { cancelAnimationFrame(id); ro.disconnect(); };
+  }, [showPaper]);
+
   return (
     <>
       {/* Paper renders behind the envelope during burst; fades in as envelope zooms away */}
       <Paper visible={showPaper}>
+        <div ref={headerRef} style={{ paddingBottom: '80px' }}>
+          <img src={headerImg} alt="" style={{ width: '60%', display: 'block', margin: '0 auto' }} />
+        </div>
         <InvitationReveal />
         <PaperDivider />
         <EventDetails />

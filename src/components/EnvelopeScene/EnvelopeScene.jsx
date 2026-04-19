@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 import './EnvelopeScene.css';
+import floralH from '../../assets/horisontal.png';
 import {
   WaxSealSVG,
   CornerSparkleSVG,
-  SparkleBorderSVG,
   SparkleClusterSVG,
 } from '../OrnamentSVG/OrnamentSVG';
 
@@ -48,11 +48,10 @@ export default function EnvelopeScene({ phase, onOpen, onComplete }) {
 
           {/* CENTER PANEL: visible through the 4 open flaps */}
           <div className="envelope__center">
-            <SparkleBorderSVG width="72%" height={24} id="ec1" />
+            <img src={floralH} alt="" className="envelope__floral-h" />
             <p className="envelope__center-eyebrow">Шақыру</p>
             <p className="envelope__center-text">Жангельды &amp; Самал</p>
             <p className="envelope__center-footer">Үйлену той</p>
-            <SparkleBorderSVG width="72%" height={24} id="ec2" />
           </div>
 
           {/* TOP FLAP — triangle pointing to center-bottom */}
@@ -79,9 +78,7 @@ export default function EnvelopeScene({ phase, onOpen, onComplete }) {
         </div>
       </div>
 
-      <p className="envelope-scene__hint">
-        Басу үшін нұқыңыз
-      </p>
+
     </div>
   );
 }
